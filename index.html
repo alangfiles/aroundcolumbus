@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>Places Around Columbus</title>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        
+        <style>
+            .previous{
+                left: 20px;
+            }
+            .next{
+                right: 20px;
+            }
+            .arrow{
+                position: absolute;
+                top: 100px;
+                top: 40vh;
+                cursor: pointer;
+                text-shadow: 1px 1px 10px #333;
+            }
+            .info{
+                position: absolute;
+                top: 10px;
+                top: 5vh;
+                right: 20px;
+                cursor: pointer;
+                text-shadow: 1px 1px 10px #333;
+            }
+            #moreInfo{
+                height:0px; /* toggles between 0 and 300 */
+                opacity: 0;
+                padding:20px;
+                width: 100%;
+                width: 100vw;
+                position: fixed;
+                bottom: 0;
+                left:0;
+                background-color:rgba(0,0,0,0.85);
+            }
+            #map{
+                height: 300px;
+                width:400px;
+                float:left;
+                
+            }
+            #map-info{
+                float:left;
+                padding-left: 20px;
+                color: #eee;
+            }
+            #map-exit{
+                float:right;
+                cursor: pointer;
+                text-shadow: 1px 1px 10px #333;
+                padding-right:40px;
+            }
+            .hoverable:hover{
+                text-shadow: 1px 1px 5px #000;
+            }
+            video#bgvid {
+                position: fixed; left: 0; top: 0;
+                min-width: 100%; min-height: 100%;
+                width: auto; height: auto; z-index: -100;
+                background: url(default.png) no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="video-div">
+            <video autoplay loop muted poster="assets/dam.png" id="bgvid">
+<!--                <source src="polina.webm" type="video/webm">-->
+                <source src="assets/dam.mp4" type="video/mp4">
+            </video>
+            <i class="fa fa-info-circle fa-inverse fa-3x info hoverable infoToggle"></i>
+            <i class="fa fa-arrow-circle-o-left fa-inverse fa-5x previous arrow hoverable"></i>
+            <i class="fa fa-arrow-circle-o-right fa-inverse fa-5x next arrow hoverable"></i>
+        </div>
+        
+        <div id="moreInfo">
+            <i class="fa fa-arrow-circle-o-down fa-inverse fa-3x hoverable infoToggle" id="map-exit"></i>
+            <div id="map"></div>
+            <div id="map-info">
+                a nice place to sit and watch the ducks.
+            </div>
+        </div>
+        
+        <script>
+            //initialize map
+            var map = L.map('map').setView([40.036,-83.011], 12);
+            L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+            }).addTo(map);
+            
+                $(".previous").click(function(){
+                    alert('left click');
+                });
+                $(".next").click(function(){
+                    alert('right click');
+                });
+            
+             var moreInfoOpen = false;
+            $(".infoToggle").click(function(){
+                
+                if(moreInfoOpen){
+                    $("#moreInfo").animate({
+                        opacity: 0,
+                        height: "0",
+                      }, 800, function() {
+                        moreInfoOpen = false;
+                      });
+                }
+                else{
+                    $("#moreInfo").animate({
+                        opacity: 1,
+                        height: "300",
+                      }, 800, function() {
+                        moreInfoOpen = true;
+                      });
+                }
+            });
+        </script>
+    </body>
+</html>
