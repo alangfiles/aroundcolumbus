@@ -5,20 +5,16 @@
             }).addTo(map);
             
                 $(".previous").click(function(){
-                    if(currentId == 0 ){
+                    currentId--;
+                    if(currentId < 0 ){
                         currentId = data.length-1;
-                    }
-                    else{
-                        currentId--;
                     }
                     loadData(currentId);
                 });
                 $(".next").click(function(){
+                    currentId++;
                     if(currentId > data.length-1 ){
                         currentId = 0;
-                    }
-                    else{
-                        currentId++;
                     }
                     loadData(currentId);
                 });
@@ -53,7 +49,7 @@ function loadData(id){
     $("#map-info").html(item.description);
     map.setView([item.lat, item.long], 14);
     $('#bgvid').attr('src', item.video);
-    $('#bgvid').attr('poster', item.picture);
+//    $('#bgvid').attr('poster', item.picture);
     $('#bgvid').load();
     
     if(moreInfoOpen){
