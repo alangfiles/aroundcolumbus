@@ -5,10 +5,22 @@
             }).addTo(map);
             
                 $(".previous").click(function(){
-                    alert('left click');
+                    if(currentId == 0 ){
+                        currentId = data.length-1;
+                    }
+                    else{
+                        currentId--;
+                    }
+                    loadData(currentId);
                 });
                 $(".next").click(function(){
-                    alert('right click');
+                    if(currentId > data.length-1 ){
+                        currentId = 0;
+                    }
+                    else{
+                        currentId++;
+                    }
+                    loadData(currentId);
                 });
             
              var moreInfoOpen = false;
@@ -32,13 +44,26 @@
                 }
             });
 
+var currentId = 0;
 function loadData(id){
+    
+    currentId = id;
+    
     var item = data[id];
     $("#map-info").html(item.description);
     map.setView([item.lat, item.long], 14);
     $('#bgvid').attr('src', item.video);
     $('#bgvid').attr('poster', item.picture);
     $('#bgvid').load();
+    
+    if(moreInfoOpen){
+        $("#moreInfo").animate({
+            opacity: 0,
+            height: "0",
+          }, 500, function() {
+            moreInfoOpen = false;
+        });
+    }
 }
 //data is loaded from data.js
 data.sort(function() {  return .5 - Math.random();});
@@ -53,6 +78,6 @@ $(document).ready(function(){
     }
     
     //pre-load the first point
-    loadData(0);
+    loadData(currentId);
 
 });
