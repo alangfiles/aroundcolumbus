@@ -8,18 +8,26 @@
         <link rel="stylesheet" href="css/site.css">
     </head>
     <body>
-        <div id="video-div">
+        <div id="primary-display" >
             <video autoplay loop muted  id="bgvid"></video>
-            <i class="fa fa-info-circle fa-inverse fa-3x info hoverable infoToggle"></i>
-            <i class="fa fa-arrow-circle-o-left fa-inverse fa-5x previous arrow hoverable"></i>
-            <i class="fa fa-arrow-circle-o-right fa-inverse fa-5x next arrow hoverable"></i>
+<!--        <img  id="bgpic" src="default.png">-->
+
         </div>
+        
+        <i class="fa fa-info-circle fa-inverse fa-3x info hoverable infoToggle"></i>
+        <i class="fa fa-arrow-circle-o-left fa-inverse fa-5x previous arrow hoverable"></i>
+        <i class="fa fa-arrow-circle-o-right fa-inverse fa-5x next arrow hoverable"></i>
         
         <div id="moreInfo">
             <i class="fa fa-arrow-circle-o-down fa-inverse fa-3x hoverable infoToggle" id="map-exit"></i>
-            <div id="map"></div>
+            <div id="secondary-display">
+                <div id="map"></div>          
+            </div>
             <div id="map-info"></div>
         </div>
+        
+        
+        
         
         <script src="js/data.js"></script>
         <script src="js/listeners.js"></script>

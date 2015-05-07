@@ -1,3 +1,8 @@
+var options = {
+    bigMap : false,
+    imgOnly : false
+    
+};
 var data = [
     {
         id: 1,

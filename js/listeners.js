@@ -46,11 +46,17 @@ function loadData(id){
     currentId = id;
     
     var item = data[id];
-    $("#map-info").html(item.description);
+    if(options.imgOnly){
+        $("#bgpic").attr('src', item.picture);
+    }
+    else{
+        $('#bgvid').attr('src', item.video);
+    //  $('#bgvid').attr('poster', item.picture);
+        $('#bgvid').load();
+    }
+    $("#item-info").html(item.description);
     map.setView([item.lat, item.long], 14);
-    $('#bgvid').attr('src', item.video);
-//    $('#bgvid').attr('poster', item.picture);
-    $('#bgvid').load();
+    
     
     if(moreInfoOpen){
         $("#moreInfo").animate({
